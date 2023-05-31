@@ -20,14 +20,18 @@ async def takeAttendance(interaction, otp):
             signResponse = signAttendance(otp, credentials[credential]["username"], credential[credential]["password"])
 
             if signResponse == 'Class not found':
-                errorSign += f"{credential.username} -> Class not found\n"
+                errorSign += f"{credential.username} -> {signResponse}\n"
                 continue
 
             if signResponse == 'Unauthorized':
-                errorSign += f"{credential.username} -> Invalid credentials\n"
+                errorSign += f"{credential.username} -> {signResponse}\n"
                 continue
 
-            successSign += f"{credential.username} -> {signResponse}\n"
+            if "success" in signResponse:
+                successSign += f"{credential.username} -> {signResponse}\n"
+                continue
+
+            errorSign += f"{credential.username} -> {signResponse}\n"
         except:
             errorSign += f"{credential.username} -> Unhandled Error\n"
             continue
