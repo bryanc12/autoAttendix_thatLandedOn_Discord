@@ -23,7 +23,7 @@ async def takeAttendance(interaction, otp):
             signResponse = signAttendance(otp, username, password)
 
             if '-' in signResponse:
-                successSign += f"{username} -> {signResponse}\n"
+                successSign += f"{username} -> `{signResponse}`\n"
                 continue
 
             if signResponse == 'Unauthorized':
