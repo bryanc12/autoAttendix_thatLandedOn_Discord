@@ -26,11 +26,7 @@ async def takeAttendance(interaction, otp):
                 errorSign += f"{username} -> {signResponse}\n"
                 continue
 
-            if 'Exist' in signResponse:
-                errorSign += f"{username} -> {signResponse}\n"
-                continue
-
-            if 'Incorrect' in signResponse:
+            if '-' in signResponse:
                 errorSign += f"{username} -> {signResponse}\n"
                 continue
 
