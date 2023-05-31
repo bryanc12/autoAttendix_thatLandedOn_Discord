@@ -17,7 +17,7 @@ async def takeAttendance(interaction, otp):
 
     for credential in credentials.keys():
         try:
-            signResponse = signAttendance(otp, credential["username"], credential["password"])
+            signResponse = signAttendance(otp, credentials[credential]["username"], credential[credential]["password"])
 
             if signResponse == 'Class not found':
                 errorSign += f"{credential.username} -> Class not found\n"
