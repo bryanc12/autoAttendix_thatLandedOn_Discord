@@ -16,24 +16,27 @@ async def takeAttendance(interaction, otp):
         return
 
     for credential in credentials.keys():
-        try:
-            signResponse = signAttendance(otp, credentials[credential]["username"], credential[credential]["password"])
+        username = credentials[credential]['username']
+        password = credentials[credential]['password']
 
-            if signResponse == 'Class not found':
-                errorSign += f"{credential.username} -> {signResponse}\n"
-                continue
+        try:
+            signResponse = signAttendance(otp, username, password)
 
             if signResponse == 'Unauthorized':
-                errorSign += f"{credential.username} -> {signResponse}\n"
+                errorSign += f"{username} -> {signResponse}\n"
                 continue
 
-            if "success" in signResponse:
-                successSign += f"{credential.username} -> {signResponse}\n"
+            if 'Exist' in signResponse:
+                errorSign += f"{username} -> {signResponse}\n"
                 continue
 
-            errorSign += f"{credential.username} -> {signResponse}\n"
+            if 'Incorrect' in signResponse:
+                errorSign += f"{username} -> {signResponse}\n"
+                continue
+
+            successSign += f"{username} -> {signResponse}\n"
         except:
-            errorSign += f"{credential.username} -> Unhandled Error\n"
+            errorSign += f"{username} -> Unhandled Error\n"
             continue
 
     if len(successSign) == 0:
@@ -41,10 +44,10 @@ async def takeAttendance(interaction, otp):
         return
 
     if len(successSign) > 0:
-        finalResponse = "Successfully signed for:\n" + successSign
+        finalResponse = "Successfully taken for:\n" + successSign
 
     if len(errorSign) > 0:
-        finalResponse += "\nError signing for:\n" + errorSign
+        finalResponse += "\nError signing otp for:\n" + errorSign
 
     finalResponse = finalResponse.strip()
     await interaction.response.send_message(finalResponse)
