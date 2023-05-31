@@ -4,7 +4,7 @@ import time
 
 from logger import log
 
-CRED_FILE_NAME = "user_credentials.json"
+CRED_FILE_NAME = "/data/user_credentials.json"
 
 def generateDefaultFile():
     try:

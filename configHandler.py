@@ -1,6 +1,6 @@
 import configparser
 
-CONFIG_FILE_NAME = "config.ini"
+CONFIG_FILE_NAME = "/data/config.ini"
 config = configparser.ConfigParser()
 
 def generateDefaultConfig():
