@@ -22,15 +22,16 @@ async def takeAttendance(interaction, otp):
         try:
             signResponse = signAttendance(otp, username, password)
 
+            if '-' in signResponse:
+                successSign += f"{username} -> {signResponse}\n"
+                continue
+
             if signResponse == 'Unauthorized':
                 errorSign += f"{username} -> {signResponse}\n"
                 continue
 
-            if '-' in signResponse:
-                errorSign += f"{username} -> {signResponse}\n"
-                continue
+            errorSign += f"{username} -> {signResponse}\n"
 
-            successSign += f"{username} -> {signResponse}\n"
         except:
             errorSign += f"{username} -> Unhandled Error\n"
             continue
