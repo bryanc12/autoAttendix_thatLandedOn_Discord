@@ -11,6 +11,10 @@ async def takeAttendance(interaction, otp):
         await interaction.response.send_message("Invalid code", ephemeral=True)
         return
 
+    if len(credentials) == 0:
+        await interaction.response.send_message("No credentials registered", ephemeral=True)
+        return
+
     for credential in credentials.keys():
         try:
             signResponse = signAttendance(otp, credential["username"], credential["password"])
