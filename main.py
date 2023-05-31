@@ -24,7 +24,7 @@ def main():
 
     discordToken = config['Settings']['discord_token']
     discordServersIdRaw = config['Settings']['discord_server_id'].split(',')
-    discordServersId = None
+    discordServersId = []
     for discordServerIdRaw in discordServersIdRaw:
         discordServersId.append(discord.Object(id=discordServerIdRaw.strip()))
     intents = discord.Intents.default()

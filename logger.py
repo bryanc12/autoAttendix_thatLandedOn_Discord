@@ -6,5 +6,5 @@ def log(rawMsg):
     msg = (dateTime + ' ' + rawMsg)
     print(msg)
 
-    with open('/data/latest.log', 'a') as logFile:
+    with open('./data/latest.log', 'a') as logFile:
         logFile.write(msg +'\n')

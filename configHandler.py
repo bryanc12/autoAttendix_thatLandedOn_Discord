@@ -2,7 +2,7 @@ import configparser
 
 from logger import log
 
-CONFIG_FILE_NAME = "/data/config.ini"
+CONFIG_FILE_NAME = "./data/config.ini"
 config = configparser.ConfigParser()
 
 def generateDefaultConfig():
