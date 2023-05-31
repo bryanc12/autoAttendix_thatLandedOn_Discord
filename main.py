@@ -24,10 +24,9 @@ def main():
 
     discordToken = config['Settings']['discord_token']
     discordServersIdRaw = config['Settings']['discord_server_id'].split(',')
-    discordServersId = []
+    discordServersId = None
     for discordServerIdRaw in discordServersIdRaw:
         discordServersId.append(discord.Object(id=discordServerIdRaw.strip()))
-    
     intents = discord.Intents.default()
     intents.message_content = True
     

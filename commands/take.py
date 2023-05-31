@@ -3,7 +3,6 @@ from credentialsHandler import loadCredentials
 
 async def takeAttendance(interaction, otp):
     credentials = loadCredentials()
-    credentials = {}
     successSign = ""
     errorSign = ""
     finalResponse = ""
