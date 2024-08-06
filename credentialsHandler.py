@@ -56,8 +56,8 @@ def addCredential(discordId, username, password):
     try:
         with open(CRED_FILE_NAME) as json_file:
             credentials = json.load(json_file)
-            credentials[discordId] = {"username": username, "password": password}
-
+            credentials[str(discordId)] = {"username": username, "password": password}
+        
         with open(CRED_FILE_NAME, 'w') as json_file:
             json.dump(credentials, json_file)
 
