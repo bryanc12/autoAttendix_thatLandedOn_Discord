@@ -18,7 +18,7 @@ def generateDefaultConfig():
     for setting in settings:
         config['Settings'][setting[0]] = setting[1]
 
-    with open('config.ini', 'w') as configfile:
+    with open(CONFIG_FILE_NAME, 'w') as configfile:
         config.write(configfile)
 
 def loadConfig():
