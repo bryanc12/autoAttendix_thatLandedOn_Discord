@@ -14,6 +14,8 @@ async def takeAttendance(interaction, otp):
     if len(credentials) == 0:
         await interaction.response.send_message("No credentials registered", ephemeral=True)
         return
+    
+    interaction.response.defer(ephermal=True)
 
     for credential in credentials.keys():
         username = credentials[credential]['username']
