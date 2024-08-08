@@ -15,7 +15,7 @@ async def takeAttendance(interaction, otp):
         await interaction.response.send_message("No credentials registered", ephemeral=True)
         return
     
-    interaction.response.defer(ephermal=True)
+    await interaction.response.defer(ephemeral=True)
 
     for credential in credentials.keys():
         username = credentials[credential]['username']
@@ -39,7 +39,7 @@ async def takeAttendance(interaction, otp):
             continue
 
     if len(successSign) == 0:
-        await interaction.response.send_message("Invalid code", ephemeral=True)
+        await interaction.followup.send("Invalid code", ephemeral=True)
         return
 
     if len(successSign) > 0:
@@ -49,7 +49,7 @@ async def takeAttendance(interaction, otp):
         finalResponse += "\nError signing otp for:\n" + errorSign
 
     finalResponse = finalResponse.strip()
-    await interaction.response.send_message(finalResponse)
+    await interaction.followup.send(finalResponse)
 
 def verifyCode(otp) -> bool:
     if (otp.isdecimal()) == False:
